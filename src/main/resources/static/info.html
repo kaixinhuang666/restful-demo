@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        $(function (){
+            $("#btn1").click(function () {
+                //异步请求
+                $.get("/employees/1", function (data) {
+                    console.log(data)
+                })
+            })
+
+            $("#btn2").click(function () {
+                //异步请求
+                $.get("/employees", function (data) {
+                    console.log(data)
+                })
+            })
+
+            $("#btn3").click(function () {
+                //异步请求
+                $.post("/employees",{name:"jake", age: 65}, function (data) {
+                    console.log(data)
+                })
+            })
+
+            $("#btn4").click(function () {
+                //异步请求
+                // $.put("/employees",{id:1,name:"jake", age: 65}, function (data) {
+                //     console.log(data)
+                // })
+                $.ajax({
+                    url:"/employees",
+                    type:"PUT",
+                    data:{id:1,name:"jake", age: 65},
+                    success:function (data) {
+                        console.log(data);
+                    }
+                })
+            })
+
+            $("#btn5").click(function () {
+                //异步请求
+                // $.put("/employees",{id:1,name:"jake", age: 65}, function (data) {
+                //     console.log(data)
+                // })
+                $.ajax({
+                    url:"/employees",
+                    type:"DELETE",
+                    data:{id:1},
+                    success:function (data) {
+                        console.log(data);
+                    }
+                })
+            })
+
+
+
+        })
+
+
+    </script>
+
+</head>
+<body>
+
+<button id="btn1">查单个</button>
+<button id="btn2">查多个</button>
+<button id="btn3">添加</button>
+<button id="btn4">更新</button>
+<button id="btn5">删除</button>
+
+
+</body>
+</html>
